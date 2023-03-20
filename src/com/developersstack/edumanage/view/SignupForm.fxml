@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.developersstack.edumanage.controller.SignupFormController">
+<AnchorPane fx:id="context" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.developersstack.edumanage.controller.SignupFormController">
    <children>
       <Label layoutX="264.0" layoutY="33.0" text="Sign up" textFill="#160090">
          <font>
@@ -19,17 +19,17 @@
          </font>
       </Label>
       <Separator layoutX="264.0" layoutY="61.0" prefHeight="1.0" prefWidth="322.0" />
-      <TextField layoutX="264.0" layoutY="91.0" prefHeight="29.0" prefWidth="160.0" promptText="First Name">
+      <TextField fx:id="txtFirstName" layoutX="264.0" layoutY="91.0" prefHeight="29.0" prefWidth="160.0" promptText="First Name">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </TextField>
-      <PasswordField layoutX="264.0" layoutY="171.0" prefHeight="29.0" prefWidth="322.0" promptText="Password">
+      <PasswordField fx:id="txtPassword" layoutX="264.0" layoutY="171.0" prefHeight="29.0" prefWidth="322.0" promptText="Password">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </PasswordField>
-      <Button layoutX="264.0" layoutY="224.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="322.0" style="-fx-background-color: #0D99FF;" text="Sign up" textFill="WHITE">
+      <Button layoutX="264.0" layoutY="224.0" mnemonicParsing="false" onAction="#signUpOnAction" prefHeight="38.0" prefWidth="322.0" style="-fx-background-color: #0D99FF;" text="Sign up" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -39,17 +39,17 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Button layoutX="265.0" layoutY="316.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="322.0" style="-fx-background-color: #1A2238;" text="Already have an account" textFill="WHITE">
+      <Button layoutX="265.0" layoutY="316.0" mnemonicParsing="false" onAction="#alreadyHaveAnAccountOnAction" prefHeight="38.0" prefWidth="322.0" style="-fx-background-color: #1A2238;" text="Already have an account" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <TextField layoutX="265.0" layoutY="131.0" prefHeight="29.0" prefWidth="322.0" promptText="email">
+      <TextField fx:id="txtEmail" layoutX="265.0" layoutY="131.0" prefHeight="29.0" prefWidth="322.0" promptText="email">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </TextField>
-      <TextField layoutX="426.0" layoutY="91.0" prefHeight="29.0" prefWidth="160.0" promptText="Last Name">
+      <TextField fx:id="txtLastName" layoutX="426.0" layoutY="91.0" prefHeight="29.0" prefWidth="160.0" promptText="Last Name">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
