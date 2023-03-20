@@ -2,6 +2,7 @@ package com.developersstack.edumanage.controller;
 
 import com.developersstack.edumanage.db.Database;
 import com.developersstack.edumanage.model.User;
+import com.developersstack.edumanage.util.security.PasswordManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -44,7 +45,7 @@ public class LoginFormController {
        Optional<User> selectedUser =
                Database.userTable.stream().filter(e->e.getEmail().equals(email)).findFirst();
        if (selectedUser.isPresent()){
-           if (selectedUser.get().getPassword().equals(password)){
+           if (new PasswordManager().checkPassword(password,selectedUser.get().getPassword())){
                System.out.println(selectedUser.get().toString());
            }else{
                new Alert(Alert.AlertType.ERROR,

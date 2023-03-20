@@ -2,6 +2,7 @@ package com.developersstack.edumanage.controller;
 
 import com.developersstack.edumanage.db.Database;
 import com.developersstack.edumanage.model.User;
+import com.developersstack.edumanage.util.security.PasswordManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -24,7 +25,7 @@ public class SignupFormController {
         String email = txtEmail.getText().toLowerCase();
         String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();
-        String password = txtPassword.getText().trim();
+        String password = new PasswordManager().encrypt(txtPassword.getText().trim());
         Database.userTable.add(
                 new User(firstName,lastName,email,password)
         );
