@@ -2,10 +2,9 @@ package com.developersstack.edumanage.controller;
 
 import com.developersstack.edumanage.db.Database;
 import com.developersstack.edumanage.model.Student;
+import com.developersstack.edumanage.view.tm.StudentTm;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 import java.time.ZoneId;
@@ -17,6 +16,12 @@ public class StudentFormController {
     public TextField txtName;
     public DatePicker txtDob;
     public TextField txtAddress;
+    public TableView<StudentTm> tblStudents;
+    public TableColumn colId;
+    public TableColumn colName;
+    public TableColumn colDob;
+    public TableColumn colAddress;
+    public TableColumn colOption;
 
     public void initialize(){
         setStudentId();
@@ -48,6 +53,14 @@ public class StudentFormController {
         );
         Database.studentTable.add(student);
         setStudentId();
+        clear();
         new Alert(Alert.AlertType.INFORMATION, "Student saved!").show();
+    }
+
+    private void clear(){
+        txtDob.setValue(null);
+        //txtName.setText("");
+        txtName.clear();
+        txtAddress.clear();
     }
 }
