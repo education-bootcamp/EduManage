@@ -35,13 +35,13 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtName" editable="false" layoutX="150.0" layoutY="53.0" prefHeight="29.0" prefWidth="127.0" promptText="Full Name">
+      <TextField fx:id="txtName" layoutX="150.0" layoutY="53.0" prefHeight="29.0" prefWidth="127.0" promptText="Full Name">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </TextField>
       <DatePicker fx:id="txtDob" layoutX="286.0" layoutY="53.0" prefHeight="29.0" prefWidth="174.0" promptText="Date of birth" />
-      <TextField fx:id="txtAddress" editable="false" layoutX="469.0" layoutY="53.0" prefHeight="29.0" prefWidth="211.0" promptText="Address">
+      <TextField fx:id="txtAddress" layoutX="469.0" layoutY="53.0" prefHeight="29.0" prefWidth="211.0" promptText="Address">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
