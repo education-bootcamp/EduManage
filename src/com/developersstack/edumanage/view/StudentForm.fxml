@@ -22,12 +22,12 @@
       <Separator layoutX="14.0" layoutY="42.0" prefHeight="3.0" prefWidth="663.0" />
       <Button layoutX="590.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #1A2238;" text="Back to home" textFill="WHITE">
          <cursor>
-            <Cursor fx:constant="CLOSED_HAND" />
+            <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="483.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #0D99FF;" text="+ New Student" textFill="WHITE">
+      <Button layoutX="483.0" layoutY="14.0" mnemonicParsing="false" onAction="#newStudentOnAction" style="-fx-background-color: #0D99FF;" text="+ New Student" textFill="WHITE">
          <cursor>
-            <Cursor fx:constant="CLOSED_HAND" />
+            <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
       <TextField fx:id="txtId" editable="false" layoutX="14.0" layoutY="53.0" prefHeight="29.0" prefWidth="127.0" promptText="Student Id">

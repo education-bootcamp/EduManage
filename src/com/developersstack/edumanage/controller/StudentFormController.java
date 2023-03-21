@@ -45,7 +45,9 @@ public class StudentFormController {
         tblStudents.getSelectionModel()
                 .selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
-            setData(newValue);
+                    if (null!=newValue){
+                        setData(newValue);
+                    }
         });
     }
 
@@ -128,5 +130,11 @@ public class StudentFormController {
         //txtName.setText("");
         txtName.clear();
         txtAddress.clear();
+    }
+
+    public void newStudentOnAction(ActionEvent actionEvent) {
+        clear();
+        setStudentId();
+        btn.setText("Save Student");
     }
 }
