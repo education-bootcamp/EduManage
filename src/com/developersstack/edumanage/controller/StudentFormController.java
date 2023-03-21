@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 import java.text.SimpleDateFormat;
@@ -27,6 +28,13 @@ public class StudentFormController {
     public TableColumn colOption;
 
     public void initialize(){
+
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colDob.setCellValueFactory(new PropertyValueFactory<>("dob"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        colOption.setCellValueFactory(new PropertyValueFactory<>("btn"));
+
         setStudentId();
         setTableData();
     }
@@ -75,6 +83,7 @@ public class StudentFormController {
         Database.studentTable.add(student);
         setStudentId();
         clear();
+        setTableData();
         new Alert(Alert.AlertType.INFORMATION, "Student saved!").show();
     }
 
