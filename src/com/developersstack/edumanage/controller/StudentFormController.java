@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Optional;
 
 public class StudentFormController {
     public AnchorPane context;
@@ -28,6 +29,7 @@ public class StudentFormController {
     public TableColumn colDob;
     public TableColumn colAddress;
     public TableColumn colOption;
+    public Button btn;
 
     public void initialize(){
 
@@ -52,6 +54,7 @@ public class StudentFormController {
         txtName.setText(tm.getFullName());
         txtAddress.setText(tm.getAddress());
         txtDob.setValue(LocalDate.parse(tm.getDob(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        btn.setText("Update Student");
     }
 
     private void setTableData() {
@@ -89,17 +92,34 @@ public class StudentFormController {
     }
 
     public void saveOnAction(ActionEvent actionEvent) {
-        Student student = new Student(
-                txtId.getText(),
-                txtName.getText(),
-                Date.from(txtDob.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
-                txtAddress.getText()
-        );
-        Database.studentTable.add(student);
-        setStudentId();
-        clear();
-        setTableData();
-        new Alert(Alert.AlertType.INFORMATION, "Student saved!").show();
+
+        if (btn.getText().equalsIgnoreCase("Save Student")){
+            Student student = new Student(
+                    txtId.getText(),
+                    txtName.getText(),
+                    Date.from(txtDob.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
+                    txtAddress.getText()
+            );
+            Database.studentTable.add(student);
+            setStudentId();
+            clear();
+            setTableData();
+            new Alert(Alert.AlertType.INFORMATION, "Student saved!").show();
+        }else{
+            for (Student st:Database.studentTable
+                 ) {
+                if (st.getStudentId().equals(txtId.getText())){
+                    st.setAddress(txtAddress.getText());
+                    st.setFullName(txtName.getText());
+                    st.setDateOfBirth(Date.from(txtDob.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                    setTableData();
+                    clear();
+                    setStudentId();
+                    return;
+                }
+            }
+            new Alert(Alert.AlertType.WARNING, "Not Found").show();
+        }
     }
 
     private void clear(){

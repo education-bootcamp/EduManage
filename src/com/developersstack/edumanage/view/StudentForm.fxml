@@ -51,9 +51,9 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </TextField>
-      <Button layoutX="525.0" layoutY="92.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="29.0" prefWidth="157.0" style="-fx-background-color: #0D99FF;" text="Save Student" textFill="WHITE">
+      <Button fx:id="btn" layoutX="525.0" layoutY="92.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="29.0" prefWidth="157.0" style="-fx-background-color: #0D99FF;" text="Save Student" textFill="WHITE">
          <cursor>
-            <Cursor fx:constant="CLOSED_HAND" />
+            <Cursor fx:constant="HAND" />
          </cursor>
          <font>
             <Font name="System Bold" size="13.0" />
