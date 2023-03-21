@@ -71,6 +71,21 @@ public class StudentFormController {
                     st.getAddress(),
                     btn
             );
+
+            btn.setOnAction(e->{
+                Alert alert= new Alert(
+                        Alert.AlertType.CONFIRMATION,
+                        "Are you sure?",
+                        ButtonType.YES,ButtonType.NO
+                );
+                Optional<ButtonType> buttonType = alert.showAndWait();
+                if (buttonType.get().equals(ButtonType.YES)){
+                    Database.studentTable.remove(st);
+                    new Alert(Alert.AlertType.INFORMATION, "Deleted!").show();
+                    setTableData();
+                }
+            });
+
             obList.add(tm);
         }
         tblStudents.setItems(obList);
