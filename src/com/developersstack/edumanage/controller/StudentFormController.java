@@ -11,7 +11,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class StudentFormController {
@@ -37,6 +39,19 @@ public class StudentFormController {
 
         setStudentId();
         setTableData();
+
+        tblStudents.getSelectionModel()
+                .selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+            setData(newValue);
+        });
+    }
+
+    private void setData(StudentTm tm) {
+        txtId.setText(tm.getId());
+        txtName.setText(tm.getFullName());
+        txtAddress.setText(tm.getAddress());
+        txtDob.setValue(LocalDate.parse(tm.getDob(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
     }
 
     private void setTableData() {
