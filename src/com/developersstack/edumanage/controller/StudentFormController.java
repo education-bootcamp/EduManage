@@ -3,10 +3,13 @@ package com.developersstack.edumanage.controller;
 import com.developersstack.edumanage.db.Database;
 import com.developersstack.edumanage.model.Student;
 import com.developersstack.edumanage.view.tm.StudentTm;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
+import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.Date;
 
@@ -25,6 +28,24 @@ public class StudentFormController {
 
     public void initialize(){
         setStudentId();
+        setTableData();
+    }
+
+    private void setTableData() {
+        ObservableList<StudentTm> obList = FXCollections.observableArrayList();
+        for (Student st:Database.studentTable
+             ) {
+            Button btn= new Button("Delete");
+            StudentTm tm = new StudentTm(
+                    st.getStudentId(),
+                    st.getFullName(),
+                    new SimpleDateFormat("yyyy-MM-dd").format(st.getDateOfBirth()),
+                    st.getAddress(),
+                    btn
+            );
+            obList.add(tm);
+        }
+        tblStudents.setItems(obList);
     }
 
     private void setStudentId() {

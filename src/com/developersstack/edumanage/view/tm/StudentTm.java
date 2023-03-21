@@ -59,4 +59,15 @@ public class StudentTm {
     public void setBtn(Button btn) {
         this.btn = btn;
     }
+
+    @Override
+    public String toString() {
+        return "StudentTm{" +
+                "id='" + id + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", dob='" + dob + '\'' +
+                ", address='" + address + '\'' +
+                ", btn=" + btn +
+                '}';
+    }
 }
