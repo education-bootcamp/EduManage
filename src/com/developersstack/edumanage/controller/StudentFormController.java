@@ -115,6 +115,7 @@ public class StudentFormController {
                     setTableData();
                     clear();
                     setStudentId();
+                    btn.setText("Save Student");
                     return;
                 }
             }
