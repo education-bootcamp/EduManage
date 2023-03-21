@@ -60,4 +60,8 @@ public class DashboardFormController {
                 FXMLLoader.load(getClass().getResource("../view/"+location+".fxml"))));
         stage.centerOnScreen();
     }
+
+    public void openStudentFormOnAction(ActionEvent actionEvent) throws IOException {
+        setUi("StudentForm");
+    }
 }
