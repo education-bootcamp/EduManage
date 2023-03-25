@@ -53,7 +53,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <TableView fx:id="txtPrograms" layoutX="34.0" layoutY="373.0" prefHeight="209.0" prefWidth="671.0">
+      <TableView fx:id="tblPrograms" layoutX="34.0" layoutY="373.0" prefHeight="209.0" prefWidth="671.0">
          <columns>
             <TableColumn fx:id="colId" prefWidth="75.0" text="# Code" />
             <TableColumn fx:id="colName" prefWidth="142.0" text="Program" />

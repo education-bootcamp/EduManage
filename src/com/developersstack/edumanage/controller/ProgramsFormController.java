@@ -4,6 +4,7 @@ import com.developersstack.edumanage.db.Database;
 import com.developersstack.edumanage.model.Program;
 import com.developersstack.edumanage.model.Student;
 import com.developersstack.edumanage.model.Teacher;
+import com.developersstack.edumanage.view.tm.ProgramTm;
 import com.developersstack.edumanage.view.tm.TechAddTm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,7 +36,7 @@ public class ProgramsFormController {
     public Button btn;
 
 
-    public TableView<?> txtPrograms;
+    public TableView<ProgramTm> tblPrograms;
 
 
     public TableColumn<?, ?> colId;
@@ -79,6 +80,14 @@ public class ProgramsFormController {
     public void initialize() {
         setProgramCode();
         setTeachers();
+        loadPrograms();
+
+        colId.setCellValueFactory(new PropertyValueFactory<>("code"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colTeacher.setCellValueFactory(new PropertyValueFactory<>("teacher"));
+        colTech.setCellValueFactory(new PropertyValueFactory<>("btnTech"));
+        colCost.setCellValueFactory(new PropertyValueFactory<>("cost"));
+        colOption.setCellValueFactory(new PropertyValueFactory<>("btn"));
 
 
         colTCode.setCellValueFactory(new PropertyValueFactory<>("code"));
@@ -88,13 +97,12 @@ public class ProgramsFormController {
     }
 
 
-
-    ArrayList<String> teachersArray =new ArrayList<>();
+    ArrayList<String> teachersArray = new ArrayList<>();
 
     private void setTeachers() {
-        for (Teacher t: Database.teacherTable
-             ) {
-            teachersArray.add(t.getCode()+". "+t.getName());
+        for (Teacher t : Database.teacherTable
+        ) {
+            teachersArray.add(t.getCode() + ". " + t.getName());
         }
         ObservableList<String> obList = FXCollections.observableArrayList(teachersArray);
         cmbTeacher.setItems(obList);
@@ -130,6 +138,45 @@ public class ProgramsFormController {
 
     public void saveOnAction(ActionEvent event) {
 
+        String[] selectedTechs = new String[tmList.size()];
+        int pointer = 0;
+        for (TechAddTm t : tmList
+        ) {
+            selectedTechs[pointer] = t.getName();
+            pointer++;
+        }
+
+        if (btn.getText().equals("Save Program")) {
+            Program program = new Program(
+                    txtId.getText(),
+                    txtName.getText(),
+                    selectedTechs,
+                    cmbTeacher.getValue().split("\\.")[0],
+                    Double.parseDouble(txtCost.getText())
+            );
+            Database.programTable.add(program);
+            new Alert(Alert.AlertType.INFORMATION, "Saved").show();
+            loadPrograms();
+        }
+    }
+
+    private void loadPrograms() {
+        ObservableList<ProgramTm> programsTmList = FXCollections.observableArrayList();
+        for (Program p : Database.programTable
+        ) {
+            Button techButton = new Button("show Tech");
+            Button removeButton = new Button("Delete");
+            ProgramTm tm = new ProgramTm(
+                    p.getCode(),
+                    p.getName(),
+                    p.getTeacherId(),
+                    techButton,
+                    p.getCost(),
+                    removeButton
+            );
+            programsTmList.add(tm);
+        }
+        tblPrograms.setItems(programsTmList);
     }
 
     private void setUi(String location) throws IOException {
@@ -138,26 +185,28 @@ public class ProgramsFormController {
                 FXMLLoader.load(getClass().getResource("../view/" + location + ".fxml"))));
         stage.centerOnScreen();
     }
+
     ObservableList<TechAddTm> tmList = FXCollections.observableArrayList();
+
     public void addTechOnAction(ActionEvent actionEvent) {
-        if (!isExists(txtTechnology.getText().trim())){
+        if (!isExists(txtTechnology.getText().trim())) {
             Button btn = new Button("Remove");
             TechAddTm tm = new TechAddTm(
-                    tmList.size()+1,txtTechnology.getText().trim(),btn
+                    tmList.size() + 1, txtTechnology.getText().trim(), btn
             );
             tmList.add(tm);
             tblTechnologies.setItems(tmList);
             txtTechnology.clear();
-        }else{
+        } else {
             txtTechnology.selectAll();
             new Alert(Alert.AlertType.WARNING, "Already Exists").show();
         }
     }
 
-    private boolean isExists(String tech){
-        for (TechAddTm tm:tmList
-             ) {
-            if (tm.getName().equals(tech)){
+    private boolean isExists(String tech) {
+        for (TechAddTm tm : tmList
+        ) {
+            if (tm.getName().equals(tech)) {
                 return true;
             }
         }
