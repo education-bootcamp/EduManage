@@ -72,7 +72,8 @@ public class DashboardFormController {
     public void openIntakeFormOnAction(ActionEvent actionEvent) {
     }
 
-    public void openProgramFormOnAction(ActionEvent actionEvent) {
+    public void openProgramFormOnAction(ActionEvent actionEvent) throws IOException {
+        setUi("ProgramsForm");
     }
 
     public void openRegistrationFormOnAction(ActionEvent actionEvent) {
