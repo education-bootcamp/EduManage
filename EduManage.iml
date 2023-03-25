@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jbcrypt-0.2" level="project" />
+    <orderEntry type="library" name="java-mail-1.4.4" level="project" />
   </component>
 </module>
