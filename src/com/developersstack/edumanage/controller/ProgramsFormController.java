@@ -4,12 +4,14 @@ import com.developersstack.edumanage.db.Database;
 import com.developersstack.edumanage.model.Program;
 import com.developersstack.edumanage.model.Student;
 import com.developersstack.edumanage.model.Teacher;
+import com.developersstack.edumanage.view.tm.TechAddTm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -63,7 +65,7 @@ public class ProgramsFormController {
     public TextField txtTechnology;
 
 
-    public TableView<?> tblTechnologies;
+    public TableView<TechAddTm> tblTechnologies;
 
 
     public TableColumn<?, ?> colTCode;
@@ -77,7 +79,15 @@ public class ProgramsFormController {
     public void initialize() {
         setProgramCode();
         setTeachers();
+
+
+        colTCode.setCellValueFactory(new PropertyValueFactory<>("code"));
+        colTName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colTRemove.setCellValueFactory(new PropertyValueFactory<>("btn"));
+
     }
+
+
 
     ArrayList<String> teachersArray =new ArrayList<>();
 
@@ -128,5 +138,29 @@ public class ProgramsFormController {
                 FXMLLoader.load(getClass().getResource("../view/" + location + ".fxml"))));
         stage.centerOnScreen();
     }
+    ObservableList<TechAddTm> tmList = FXCollections.observableArrayList();
+    public void addTechOnAction(ActionEvent actionEvent) {
+        if (!isExists(txtTechnology.getText().trim())){
+            Button btn = new Button("Remove");
+            TechAddTm tm = new TechAddTm(
+                    tmList.size()+1,txtTechnology.getText().trim(),btn
+            );
+            tmList.add(tm);
+            tblTechnologies.setItems(tmList);
+            txtTechnology.clear();
+        }else{
+            txtTechnology.selectAll();
+            new Alert(Alert.AlertType.WARNING, "Already Exists").show();
+        }
+    }
 
+    private boolean isExists(String tech){
+        for (TechAddTm tm:tmList
+             ) {
+            if (tm.getName().equals(tech)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
