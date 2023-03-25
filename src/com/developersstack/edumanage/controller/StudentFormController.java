@@ -126,7 +126,6 @@ public class StudentFormController {
     }
 
     public void saveOnAction(ActionEvent actionEvent) {
-
         if (btn.getText().equalsIgnoreCase("Save Student")){
             Student student = new Student(
                     txtId.getText(),
