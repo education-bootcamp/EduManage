@@ -34,7 +34,7 @@
          </font>
       </Label>
       <Separator layoutX="408.0" layoutY="14.0" orientation="VERTICAL" prefHeight="25.0" prefWidth="0.0" />
-      <Button layoutX="559.0" layoutY="57.0" mnemonicParsing="false" prefHeight="132.0" prefWidth="155.0" style="-fx-background-color: #FF6600;" text="Teachers" textFill="WHITE">
+      <Button layoutX="559.0" layoutY="57.0" mnemonicParsing="false" onAction="#openTeacherFormOnAction" prefHeight="132.0" prefWidth="155.0" style="-fx-background-color: #FF6600;" text="Teachers" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -42,7 +42,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="385.0" layoutY="57.0" mnemonicParsing="false" prefHeight="132.0" prefWidth="155.0" style="-fx-background-color: #C0392B;" text="Intakes" textFill="WHITE">
+      <Button layoutX="385.0" layoutY="57.0" mnemonicParsing="false" onAction="#openIntakeFormOnAction" prefHeight="132.0" prefWidth="155.0" style="-fx-background-color: #C0392B;" text="Intakes" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -50,7 +50,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="200.0" layoutY="57.0" mnemonicParsing="false" prefHeight="132.0" prefWidth="155.0" style="-fx-background-color: #1A2238;" text="Programs" textFill="WHITE">
+      <Button layoutX="200.0" layoutY="57.0" mnemonicParsing="false" onAction="#openProgramFormOnAction" prefHeight="132.0" prefWidth="155.0" style="-fx-background-color: #1A2238;" text="Programs" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -58,7 +58,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="14.0" layoutY="204.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="700.0" style="-fx-background-color: #2E7D32;" text="Registration" textFill="WHITE">
+      <Button layoutX="14.0" layoutY="204.0" mnemonicParsing="false" onAction="#openRegistrationFormOnAction" prefHeight="91.0" prefWidth="700.0" style="-fx-background-color: #2E7D32;" text="Registration" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
