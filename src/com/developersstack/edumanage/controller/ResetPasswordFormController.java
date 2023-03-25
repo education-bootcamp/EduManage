@@ -22,6 +22,7 @@ public class ResetPasswordFormController {
 
     public void setUserData(String email) {
         selectedEmail = email;
+        System.out.println(selectedEmail);
     }
 
     public void changePasswordOnAction(ActionEvent actionEvent) throws IOException {
