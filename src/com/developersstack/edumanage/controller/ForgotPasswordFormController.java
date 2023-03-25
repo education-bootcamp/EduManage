@@ -34,10 +34,11 @@ public class ForgotPasswordFormController {
 
             String fromEmail = "education.seekerscloud@gmail.com";
             String toEmail = txtEmail.getText();
-            String host = "localhost";
+            String host = "127.0.0.1";
 
             Properties properties = System.getProperties();
             properties.setProperty("mail.smtp.host", host);
+            properties.setProperty("mail.smtp.port","587");
             // => node=> nodemailer, (sendGrid, twilio)
             Session session = Session.getDefaultInstance(properties);
 
