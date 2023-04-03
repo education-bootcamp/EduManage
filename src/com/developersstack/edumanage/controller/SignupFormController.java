@@ -21,17 +21,6 @@ public class SignupFormController {
     public TextField txtEmail;
     public TextField txtLastName;
 
-    public void signUpOnAction(ActionEvent actionEvent) throws IOException {
-        String email = txtEmail.getText().toLowerCase();
-        String firstName = txtFirstName.getText();
-        String lastName = txtLastName.getText();
-        String password = new PasswordManager().encrypt(txtPassword.getText().trim());
-        Database.userTable.add(
-                new User(firstName,lastName,email,password)
-        );
-        new Alert(Alert.AlertType.INFORMATION, "Welcome!").show();
-        setUi("LoginForm");
-    }
 
     public void alreadyHaveAnAccountOnAction(ActionEvent actionEvent) throws IOException {
         setUi("LoginForm");
@@ -41,5 +30,24 @@ public class SignupFormController {
         stage.setScene(new Scene(
                 FXMLLoader.load(getClass().getResource("../view/"+location+".fxml"))));
         stage.centerOnScreen();
+    }
+    public void signUpOnAction(ActionEvent actionEvent) throws IOException {
+        String email = txtEmail.getText().toLowerCase();
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
+        String password = new PasswordManager().encrypt(txtPassword.getText().trim());
+        User createUser = new User(firstName, lastName, email, password);
+        boolean isSaved = signup(createUser);
+        if (isSaved){
+            new Alert(Alert.AlertType.INFORMATION, "Welcome!").show();
+            setUi("LoginForm");
+        }else{
+            new Alert(Alert.AlertType.WARNING, "Try Again!").show();
+        }
+    }
+
+    //================================
+    private boolean signup(User user){
+        // save (database)
     }
 }
